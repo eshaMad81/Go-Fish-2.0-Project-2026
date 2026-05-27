@@ -10,20 +10,14 @@ Next, OpenCV identifies contours within the mask and selects the largest contour
 
 The Raspberry Pi then compares the fish's centroid position to the center of the camera image:
 
-Fish left of center → robot moves left
-Fish right of center → robot moves right
-Fish above center → robot moves forward
-Fish below center → robot moves backward
+- Fish left of center → robot moves left
+- Fish right of center → robot moves right
+- Fish above center → robot moves forward
+- Fish below center → robot moves backward
 
-The difference between the fish location and the frame center is used to calculate movement velocities. These velocities are intentionally limited to low values to produce smoother robot movement and prevent sudden turns.
+The difference between the fish location and the frame center is used to calculate movement velocities. These velocities are intentionally limited to low values to produce smoother robot movement and prevent sudden turns. Once the movement commands are generated, the Raspberry Pi sends them through a USB serial connection to the VEX V5 Brain. The VEX Brain receives the motor commands and controls the drive motors accordingly. At the same time, an RPLIDAR sensor continuously scans the robot's surroundings. If an obstacle is detected, the system can prevent forward movement and initiate avoidance behavior. This allows the robot to navigate within a maze environment without colliding with walls. A Flask web server running on the Raspberry Pi streams the camera feed to a laptop. The web interface displays: The raw camera feed, The HSV tracking visualization, The fish contour, The centroid position, dx and dy values
 
-Once the movement commands are generated, the Raspberry Pi sends them through a USB serial connection to the VEX V5 Brain. The VEX Brain receives the motor commands and controls the drive motors accordingly.
-
-At the same time, an RPLIDAR sensor continuously scans the robot's surroundings. If an obstacle is detected, the system can prevent forward movement and initiate avoidance behavior. This allows the robot to navigate within a maze environment without colliding with walls.
-
-A Flask web server running on the Raspberry Pi streams the camera feed to a laptop. The web interface displays: The raw camera feed, The HSV tracking visualization, The fish contour, The centroid position, dx and dy values
-
-#How to Replicate the Project
+**How to Replicate the Project
 
 Hardware: Raspberry Pi, MicroSD card with Raspberry Pi OS, USB Webcam, VEX V5 Brain, VEX Drive Motors, Robot chassis, RPLIDAR A1M8, USB cables, Power source for Raspberry Pi and VEX, Software, Python 3, OpenCV, NumPy, Flask, PySerial, VEXcode, Python
 
