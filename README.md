@@ -29,9 +29,25 @@ Hardware: Raspberry Pi, MicroSD card with Raspberry Pi OS, USB Webcam, VEX V5 Br
 
 **Setup Instructions**
 
+
 **Step 1: Raspberry Pi Setup**
 
 Begin by installing Raspberry Pi OS on a microSD card and booting the Raspberry Pi. Connect the Raspberry Pi to a network using either Ethernet or Wi-Fi and enable SSH access for remote development through enabling Internet Sharing. Once connected, update the operating system and install the required Python libraries and packages used throughout the project.
+
+1. Install Raspberry Pi OS on a microSD card.
+2. Insert the microSD card into your laptop.
+3. Open the bootfs partition of the microSD card.
+4. Create an empty file named: ssh
+5. Eject the microSD card and insert it into the Raspberry Pi.
+5. Power on the Raspberry Pi.
+6. Connect the Raspberry Pi to your laptop using an Ethernet cable.
+7. On your Mac, enable Internet Sharing:
+8. System Settings → General → Sharing → Internet Sharing
+9. Share your connection from Wi-Fi to Ethernet.
+10. Open Terminal on your laptop.
+11. Find the Raspberry Pi IP address:arp -a or ping raspberrypi.local
+12. SSH into the Raspberry Pi: ssh pi@raspberrypi.local or ssh pi@<PI_IP_ADDRESS>
+- ex. ssh pi@192.168.3.2
 
 commands: 
 
@@ -42,6 +58,7 @@ sudo apt install python3-opencv
 sudo apt install python3-flask
 sudo apt install python3-serial
 sudo apt install python3-pip
+
 
 **Step 2: Camera Setup**
 
@@ -64,6 +81,7 @@ fswebcam test.jpg
 
 If the image is successfully captured, the camera is ready for use with the HSV tracking system.
 
+
 **Step 3: Install Project Dependencies**
 
 The project relies on several Python libraries for computer vision, web streaming, and serial communication.
@@ -73,6 +91,7 @@ Install any remaining dependencies:
 pip3 install numpy
 
 The primary libraries used in this project are: OpenCV, NumPy, Flask, PySerial
+
 
 **Step 4: VEX V5 Setup
 
@@ -89,6 +108,20 @@ Upload a test program to verify that both motors can move forward, backward, lef
 vexTest.py is a file included in this git, so that can be used as the test file.
 [add how to download]
 
+Downloading Code to the VEX V5 Brain
+1. Open VEXcode V5 on the laptop.
+2. Connect the VEX V5 Brain to the laptop using a USB cable.
+3. Turn on the VEX V5 Brain.
+4. Open the vexTest.py file from this repository in VEXcode V5.
+5. Select the correct Brain connection if prompted.
+6. Click the Download button in the top-right corner of VEXcode V5.
+7. Wait for the program to compile and transfer to the Brain.
+8. Once downloaded, press Run on the VEX Brain or directly from VEXcode V5.
+
+The robot should now execute the motor test movements, confirming that the motors and Brain are configured correctly before connecting the Raspberry Pi control system.
+
+
+
 **Step 5: Connect Raspberry Pi to VEX Brain
 
 Connect the Raspberry Pi to the VEX V5 Brain using a USB data cable.
@@ -103,6 +136,7 @@ The VEX Brain should appear as a serial device such as:
 
 This serial connection allows the Raspberry Pi to transmit movement commands generated from the HSV tracking system directly to the robot.
 
+
 **Step 6: LiDAR Setup
 
 Connect the RPLIDAR A1M8 to the Raspberry Pi using USB.
@@ -116,6 +150,7 @@ Install the required LiDAR library:
 pip3 install rplidar-roboticia
 
 The LiDAR continuously scans the robot's surroundings and can be used for obstacle detection and maze navigation.
+
 
 **Step 7: Running the HSV Tracking System
 
@@ -147,16 +182,16 @@ The interface displays:
 - Calculated motor commands
 - Raw camera feed
 
+
 **Step 8: Testing the System
 
 Place the fish target inside the tank and position the overhead camera above the workspace. For testing purposes, the fish can be moved manually or with a magnet underneath the tank.
 
 As the fish moves:
-
-Left → Robot moves left
-Right → Robot moves right
-Up → Robot moves forward
-Down → Robot moves backward
+- Left → Robot moves left
+- Right → Robot moves right
+- Up → Robot moves forward
+- Down → Robot moves backward
 
 The robot should respond smoothly using velocity-based control while the live web interface displays all tracking calculations in real time.
 
