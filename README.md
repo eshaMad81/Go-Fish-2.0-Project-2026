@@ -87,7 +87,7 @@ pip3 install numpy
 The primary libraries used in this project are: OpenCV, NumPy, Flask, PySerial
 
 
-**Step 4: VEX V5 Setup
+**Step 4: VEX V5 Setup**
 
 Assemble the robot chassis and connect the drive motors to the VEX V5 Brain.
 
@@ -116,7 +116,7 @@ The robot should now execute the motor test movements, confirming that the motor
 
 
 
-**Step 5: Connect Raspberry Pi to VEX Brain
+**Step 5: Connect Raspberry Pi to VEX Brain**
 
 Connect the Raspberry Pi to the VEX V5 Brain using a USB data cable.
 
@@ -131,7 +131,7 @@ The VEX Brain should appear as a serial device such as:
 This serial connection allows the Raspberry Pi to transmit movement commands generated from the HSV tracking system directly to the robot.
 
 
-**Step 6: LiDAR Setup
+**Step 6: LiDAR Setup**
 
 Connect the RPLIDAR A1M8 to the Raspberry Pi using USB.
 
@@ -146,7 +146,7 @@ pip3 install rplidar-roboticia
 The LiDAR continuously scans the robot's surroundings and can be used for obstacle detection and maze navigation.
 
 
-**Step 7: Running the HSV Tracking System
+**Step 7: Running the HSV Tracking System**
 
 Launch the HSV tracking server:
 
@@ -177,7 +177,7 @@ The interface displays:
 - Raw camera feed
 
 
-**Step 8: Testing the System
+**Step 8: Testing the System**
 
 Place the fish target inside the tank and position the overhead camera above the workspace. For testing purposes, the fish can be moved manually or with a magnet underneath the tank.
 
