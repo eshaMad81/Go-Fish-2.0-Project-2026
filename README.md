@@ -74,7 +74,92 @@ pip3 install numpy
 
 The primary libraries used in this project are: OpenCV, NumPy, Flask, PySerial
 
+Step 4: VEX V5 Setup
 
+Assemble the robot chassis and connect the drive motors to the VEX V5 Brain.
+
+Motor configuration used in this project:
+
+Motor	Port: 
+-   Left Drive Motor	Port 1
+-   Right Drive Motor	Port 10
+
+Upload a test program to verify that both motors can move forward, backward, left, and right before integrating the Raspberry Pi.
+
+vexTest.py is a file included in this git, so that can be used as the test file.
+[add how to download]
+
+Step 5: Connect Raspberry Pi to VEX Brain
+
+Connect the Raspberry Pi to the VEX V5 Brain using a USB data cable.
+
+Verify that the VEX Brain is recognized by the Raspberry Pi:
+
+ls /dev/tty*
+
+The VEX Brain should appear as a serial device such as:
+
+/dev/ttyACM0
+
+This serial connection allows the Raspberry Pi to transmit movement commands generated from the HSV tracking system directly to the robot.
+
+Step 6: LiDAR Setup
+
+Connect the RPLIDAR A1M8 to the Raspberry Pi using USB.
+
+Verify detection:
+
+lsusb
+
+Install the required LiDAR library:
+
+pip3 install rplidar-roboticia
+
+The LiDAR continuously scans the robot's surroundings and can be used for obstacle detection and maze navigation.
+
+Step 7: Running the HSV Tracking System
+
+Launch the HSV tracking server:
+
+python3 fish_server.py
+
+The program performs the following tasks simultaneously:
+
+Captures video from the overhead webcam.
+Detects the fish using HSV color segmentation.
+Calculates the fish centroid position.
+Computes robot movement commands.
+Sends commands to the VEX V5 Brain.
+Streams the live tracking feed through a web server.
+
+Find the Raspberry Pi IP address:
+
+hostname -I
+
+Open a web browser on a laptop and navigate to:
+
+http://<PI_IP>:5000
+
+The interface displays:
+
+HSV tracking visualization
+Fish contour and centroid
+Position offsets (dx, dy)
 Calculated motor commands
+Raw camera feed
 
-This allows users to monitor the entire tracking process in real time.
+Step 8: Testing the System
+
+Place the fish target inside the tank and position the overhead camera above the workspace. For testing purposes, the fish can be moved manually or with a magnet underneath the tank.
+
+As the fish moves:
+
+Left → Robot moves left
+Right → Robot moves right
+Up → Robot moves forward
+Down → Robot moves backward
+
+The robot should respond smoothly using velocity-based control while the live web interface displays all tracking calculations in real time.
+
+
+
